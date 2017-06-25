@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vehículos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-card>
+	  <ion-card-header>
+	    Explore Nearby
+	  </ion-card-header>
+
+	  <ion-list>
+	    <button ion-item *ngFor="let v of vehicles">
+	      <ion-icon name="car" item-start></ion-icon>
+	      {{v.plate}}
+	    </button>
+
+	  </ion-list>
+	</ion-card>
+</ion-content>
