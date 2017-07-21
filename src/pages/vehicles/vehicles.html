@@ -7,20 +7,54 @@
   </ion-navbar>
 </ion-header>
 
+<ion-content  class="cards-bg">
 
-<ion-content padding>
+    <!-- Real floating action button, fixed. It will not scroll with the content -->
+    <ion-fab top right edge>
+      <button ion-fab color="dark"><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list>
+        <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
 
-	<ion-card>
-	  <ion-card-header>
-	    Explore Nearby
-	  </ion-card-header>
+    <ion-card *ngFor="let v of vehicles">
 
-	  <ion-list>
-	    <button ion-item *ngFor="let v of vehicles">
-	      <ion-icon name="car" item-start></ion-icon>
-	      {{v.plate}}
-	    </button>
+      <ion-item>
+        <ion-avatar item-start>
+          <ion-icon name='car'></ion-icon>
+        </ion-avatar>
+        <h2>{{v.name}}</h2>
+        <p>{{v.type}}</p>
+      </ion-item>
 
-	  </ion-list>
-	</ion-card>
+
+      <img src={{v.image}}/>
+      <ion-card-content>
+        <ion-card-title>
+          {{v.plate}}
+          </ion-card-title>
+        <p>
+          {{v.brand}}
+        </p>
+        <p>
+          {{v.model}}
+        </p>
+      </ion-card-content>
+
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button color="dark" icon-only>
+            <ion-icon name='build'></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button color="dark" icon-only>
+            <ion-icon name='create'></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
 </ion-content>

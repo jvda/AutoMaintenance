@@ -7,6 +7,7 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { VehiclesPage } from '../pages/vehicles/vehicles';
+import { CardsPage } from '../pages/cards/cards';
 
 import { VehicleAPI } from '../API/vehicleAPI';
 
@@ -19,7 +20,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    VehiclesPage
+    VehiclesPage,
+    CardsPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    VehiclesPage
+    VehiclesPage,
+    CardsPage
   ],
   providers: [
     StatusBar,
