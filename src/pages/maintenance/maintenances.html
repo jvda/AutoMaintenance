@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mantenimiento</ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab top right edge>
+    <button ion-fab color="dark" (click)="save($event)" ><ion-icon name="cloud"></ion-icon></button>
+  </ion-fab>
+
+  <ion-card>
+
+    <h2>{{e.id}}</h2>
+
+    <ion-grid>
+    <ion-row>
+      <ion-col>
+      <ion-item>
+      <!--<ion-input type="Date" [(ngModel)]="e.date" name="date" clearInput></ion-input>-->
+      <ion-datetime displayFormat="DD MMMM YYYY" pickerFormat = "DD MMMM YYYY"[(ngModel)]="dateDisplay"></ion-datetime>
+      </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Registro</ion-label>
+      <ion-input type="number" [(ngModel)]="e.measurement" name="measurement" clearInput></ion-input>
+      </ion-item>
+      </ion-col>
+      <ion-col>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Unidad</ion-label>
+      <ion-input type="text" [(ngModel)]="e.unid" name="unid" clearInput></ion-input>
+      </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Precio</ion-label>
+      <ion-input type="number" [(ngModel)]="e.price" name="price" clearInput></ion-input>
+      </ion-item>
+      </ion-col>
+      <ion-col>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Moneda</ion-label>
+      <ion-input type="text" [(ngModel)]="e.unidprice" name="unidprice" clearInput></ion-input>
+      </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-card>
+
+  <ion-card *ngFor="let m of e.maintenances">
+    <ion-grid>
+    <ion-row>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Tipo</ion-label>
+      <ion-input type="text" [(ngModel)]="m.type" name="type" clearInput></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Acción</ion-label>
+      <ion-input type="text" [(ngModel)]="m.action" name="action" clearInput></ion-input>
+      </ion-item>
+      </ion-col>
+      <ion-col>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Pieza</ion-label>
+      <ion-input type="text" [(ngModel)]="m.part" name="part" clearInput></ion-input>
+      </ion-item>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+      <ion-label color="primary" floating clearInput>Descripción</ion-label>
+      <ion-input type="text" [(ngModel)]="m.describe" name="describe" clearInput></ion-input>
+      </ion-item>
+    </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-fab>
+      <button ion-fab color="dark" (click)="maintenaceNew($event)"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+  </ion-card>
+
+</ion-content>

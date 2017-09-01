@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
+import { MaintenancesPage } from '../pages/maintenance/maintenances';
+import { EventsPage } from '../pages/events/events';
 import { VehiclesPage } from '../pages/vehicles/vehicles';
-import { CardsPage } from '../pages/cards/cards';
+import { VehicleDetailsPage } from '../pages/vehicle-details/vehicle-details';
 
 import { VehicleAPI } from '../API/vehicleAPI';
 
@@ -18,23 +19,24 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HelloIonicPage,
-    ItemDetailsPage,
-    ListPage,
     VehiclesPage,
-    CardsPage
+    VehicleDetailsPage,
+    MaintenancesPage,
+    EventsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HelloIonicPage,
-    ItemDetailsPage,
-    ListPage,
     VehiclesPage,
-    CardsPage
+    VehicleDetailsPage,
+    MaintenancesPage,
+    EventsPage
   ],
   providers: [
     StatusBar,

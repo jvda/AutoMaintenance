@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle *ngIf="!v">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vehicle Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Real floating action button, fixed. It will not scroll with the content -->
+  <ion-fab top right edge>
+    <button ion-fab color="dark" (click)="save($event)" ><ion-icon name="cloud"></ion-icon></button>
+  </ion-fab>
+  
+  <ion-item>
+    <ion-label color="primary" floating>Nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="v.name" name="name" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating clearInput>Matrícula</ion-label>
+    <ion-input type="text" [(ngModel)]="v.plate" name="plate" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating clearInput>Tipo de vehículo</ion-label>
+    <ion-input type="text" [(ngModel)]="v.type" name="type" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating clearInput>Marca</ion-label>
+    <ion-input type="text" [(ngModel)]="v.brand" name="brand" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating clearInput>Modelo</ion-label>
+    <ion-input type="text" [(ngModel)]="v.model" name="model" clearInput></ion-input>
+  </ion-item>
+</ion-content>

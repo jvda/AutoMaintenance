@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle *ngIf="!selectedVehicle">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <button menuToggle *ngIf="selectedVehicle">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!selectedVehicle">Histórico</ion-title>
+    <ion-title *ngIf="selectedVehicle">Mantenimientos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  class="cards-bg">
+
+    <!-- Real floating action button, fixed. It will not scroll with the content -->
+    <ion-fab top right edge *ngIf="selectedVehicle">
+      <button ion-fab color="dark" (click)="eventNew($event)"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+    <ion-card *ngFor="let e of eventsFitered">
+
+      <ion-item *ngIf="!selectedVehicle">
+        <p>
+          {{getNameVehicle(e.vehicleid)}}
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar item-start>
+          <img src={{getImageVehicle(e.vehicleid)}} />
+        </ion-avatar>
+        <ion-card-title>
+          {{e.measurement}} {{e.unid}}
+        </ion-card-title>
+        <p>
+          {{e.price}} {{e.unidprice}}
+        </p>
+      </ion-item>
+
+      <ion-item *ngFor="let m of e.maintenances">
+        <p *ngIf="m.type">
+          {{m.type}}
+        </p>
+        <p>
+          {{m.action}} {{m.part}}
+        </p>
+        <p *ngIf="m.describe">
+          {{m.describe}}
+        </p>
+      </ion-item>
+
+
+      <ion-row no-padding *ngIf="selectedVehicle">
+        <ion-col text-right>
+          <button ion-button color="dark"  (click)="eventDel($event, e)" icon-only>
+            <ion-icon name='trash'></ion-icon>
+          </button>
+          <button ion-button color="dark"  (click)="eventEdit($event, e)" icon-only>
+            <ion-icon name='create'></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+</ion-content>

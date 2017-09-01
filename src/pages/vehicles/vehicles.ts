@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 
+import { NavController, NavParams } from 'ionic-angular';
+
 import { Vehicle } from '../../model/vehicle';
-//import { Promise } from 'core-js/es6';
 import { VehicleAPI } from '../../API/vehicleAPI';
-//import { VehiclesMockData } from '../../API/mockData';
+import { Storage } from '@ionic/storage';
+
+import { VehicleDetailsPage } from '../vehicle-details/vehicle-details';
+import { EventsPage } from '../events/events';
 
 @Component({
   selector: 'page-vehicles',
@@ -11,20 +15,38 @@ import { VehicleAPI } from '../../API/vehicleAPI';
 })
 export class VehiclesPage {
   vehicles: Array<Vehicle>;
-  //vehicles: Array<{id: number, plate: string}>;
+  maxId: number;
 
-  /*constructor() {
-   vehicleAPI.getAllVehiclesAsync().then((vehicles: Array<Vehicle>) => {
-      this.vehicles = vehicles;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage){
+    storage.get('list').then((value)=>
+      value != null ? this.vehicles = value : this.vehicles = new Array<Vehicle>()
+    );
+  }
+
+  vehicleEdit(event, v) {
+    this.navCtrl.push(VehicleDetailsPage, {
+      v: v, vList: this.vehicles
     });
-    this.vehicles = VehiclesMockData;
-
-  }*/
-
-  constructor(vehicleAPI: VehicleAPI) {
-    this.vehicles = vehicleAPI.getAllVehiclesAsync();
 
   }
 
+  vehicleDel(event, v) {
+    this.vehicles.splice(this.vehicles.indexOf(v),1);
 
+    this.storage.set('list', this.vehicles);
+
+    //TODO: delete all maintenances of this vehicle
+  }
+
+  vehicleNew(event){
+    this.navCtrl.push(VehicleDetailsPage, {
+      v: null, vList: this.vehicles
+    });
+  }
+
+  maintenanceList(event,v){
+    this.navCtrl.push(EventsPage, {
+      v: v
+    });
+  }
 }

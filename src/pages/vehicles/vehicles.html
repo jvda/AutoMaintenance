@@ -11,13 +11,7 @@
 
     <!-- Real floating action button, fixed. It will not scroll with the content -->
     <ion-fab top right edge>
-      <button ion-fab color="dark"><ion-icon name="add"></ion-icon></button>
-      <ion-fab-list>
-        <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-        <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-        <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-        <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-      </ion-fab-list>
+      <button ion-fab color="dark" (click)="vehicleNew($event)"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
     <ion-card *ngFor="let v of vehicles">
@@ -35,7 +29,7 @@
       <ion-card-content>
         <ion-card-title>
           {{v.plate}}
-          </ion-card-title>
+        </ion-card-title>
         <p>
           {{v.brand}}
         </p>
@@ -46,12 +40,15 @@
 
       <ion-row no-padding>
         <ion-col>
-          <button ion-button color="dark" icon-only>
+          <button ion-button color="dark" (click)="maintenanceList($event, v)" icon-only>
             <ion-icon name='build'></ion-icon>
           </button>
         </ion-col>
         <ion-col text-right>
-          <button ion-button color="dark" icon-only>
+          <button ion-button color="dark"  (click)="vehicleDel($event, v)" icon-only>
+            <ion-icon name='trash'></ion-icon>
+          </button>
+          <button ion-button color="dark"  (click)="vehicleEdit($event, v)" icon-only>
             <ion-icon name='create'></ion-icon>
           </button>
         </ion-col>
