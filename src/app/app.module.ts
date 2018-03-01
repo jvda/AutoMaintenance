@@ -14,6 +14,7 @@ import { VehicleAPI } from '../API/vehicleAPI';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    VehicleAPI
+    VehicleAPI,
+    Camera
   ]
 })
 export class AppModule {}

@@ -21,22 +21,41 @@
     <ion-card *ngFor="let e of eventsFitered">
 
       <ion-item *ngIf="!selectedVehicle">
-        <p>
-          {{getNameVehicle(e.vehicleid)}}
-        </p>
-      </ion-item>
-
-      <ion-item>
         <ion-avatar item-start>
           <img src={{getImageVehicle(e.vehicleid)}} />
         </ion-avatar>
+
         <ion-card-title>
-          {{e.measurement}} {{e.unid}}
+          {{getNameVehicle(e.vehicleid)}}
         </ion-card-title>
+
+      </ion-item>
+
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-4 *ngIf="selectedVehicle">
+            <ion-item>
+            <ion-avatar item-start >
+              <img src={{getImageVehicle(e.vehicleid)}} />
+            </ion-avatar>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6 text-left>
+            <ion-card-title>
+              {{e.measurement}} {{e.unid}}
+            </ion-card-title>
+          </ion-col>
+          <ion-col text-right>
+            <div>{{e.price}} {{e.unidprice}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-card-content>
         <p>
           {{e.price}} {{e.unidprice}}
         </p>
-      </ion-item>
+      </ion-card-content>
 
       <ion-item *ngFor="let m of e.maintenances">
         <p *ngIf="m.type">
