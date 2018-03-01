@@ -5,6 +5,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { EventsPage } from '../pages/events/events';
 import { VehiclesPage } from '../pages/vehicles/vehicles';
+import { AddSamplesPage } from '../pages/add-samples/add-samples';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,7 +33,8 @@ export class MyApp {
     this.pages = [
       { title: 'Vehículos', component: VehiclesPage },
       { title: 'Histórico', component: EventsPage },
-      { title: 'Configuración', component: HelloIonicPage }
+      { title: 'Configuración', component: HelloIonicPage },
+      { title: 'Ejemplos', component: AddSamplesPage }
     ];
   }
 

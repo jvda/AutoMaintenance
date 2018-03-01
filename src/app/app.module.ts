@@ -9,6 +9,7 @@ import { MaintenancesPage } from '../pages/maintenance/maintenances';
 import { EventsPage } from '../pages/events/events';
 import { VehiclesPage } from '../pages/vehicles/vehicles';
 import { VehicleDetailsPage } from '../pages/vehicle-details/vehicle-details';
+import { AddSamplesPage } from '../pages/add-samples/add-samples';
 
 import { VehicleAPI } from '../API/vehicleAPI';
 
@@ -23,7 +24,8 @@ import { Camera } from '@ionic-native/camera';
     VehiclesPage,
     VehicleDetailsPage,
     MaintenancesPage,
-    EventsPage
+    EventsPage,
+    AddSamplesPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { Camera } from '@ionic-native/camera';
     VehiclesPage,
     VehicleDetailsPage,
     MaintenancesPage,
-    EventsPage
+    EventsPage,
+    AddSamplesPage
   ],
   providers: [
     StatusBar,
