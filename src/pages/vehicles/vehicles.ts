@@ -20,10 +20,7 @@ export class VehiclesPage {
   }
 
   vehicleEdit(event, v) {
-    this.navCtrl.push(VehicleDetailsPage, {
-      v: v, vList: this.api.vehicleList
-    });
-
+    this.navCtrl.push(VehicleDetailsPage, { v: v });
   }
 
   vehicleDel(event, v) {
@@ -31,14 +28,10 @@ export class VehiclesPage {
   }
 
   vehicleNew(event){
-    this.navCtrl.push(VehicleDetailsPage, {
-      v: null, vList: this.api.vehicleList
-    });
+    this.navCtrl.push(VehicleDetailsPage);
   }
 
   maintenanceList(event,v){
-    this.navCtrl.push(EventsPage, {
-      v: v
-    });
+    this.navCtrl.push(EventsPage, { v: v });
   }
 }

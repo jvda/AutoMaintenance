@@ -14,9 +14,19 @@ export class VehicleAPI {
     this.load();
   }
 
-  getAllVehiclesAsync(){
+  loadAllVehiclesAsync(){
 
-    return <Array<Vehicle>> VehiclesMockData;
+    let mock = <Array<Vehicle>> VehiclesMockData;
+
+    for(let v of mock){
+      v.id = this.getNextVehiclesId();
+      let vehicle = new Vehicle();
+      vehicle.copy(v);
+
+      this.vehicleList.push(vehicle);
+    }
+
+    this.save();
   };
 
   load(){
@@ -38,17 +48,19 @@ export class VehicleAPI {
   }
 
   editVehicle(v: Vehicle){
+    if (v.id == null){
+      v.id = this.getNextVehiclesId();
+    }
+
     this.vehicleList.splice(
       this.vehicleList.indexOf(
         this.vehicleList.filter( vehicle => vehicle.id === v.id).pop()
       ),1,v);
 
     this.save();
-
   }
 
-
-  getNextVehiclesId(){
+  private getNextVehiclesId(){
     let max = 0;
 
     for(let v of this.vehicleList){

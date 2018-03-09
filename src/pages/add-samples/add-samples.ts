@@ -14,14 +14,13 @@ export class AddSamplesPage {
   vehicles: Array<Vehicle>;
   maxId: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public list: VehicleAPI){
-      this.vehicles = list.getAllVehiclesAsync();
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+      public api: VehicleAPI){
+
   }
 
   addSamples(event ) {
-
-
-      this.storage.set('list', this.vehicles);
+    this.api.loadAllVehiclesAsync();
   }
 
 }
