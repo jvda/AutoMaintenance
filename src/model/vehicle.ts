@@ -1,4 +1,6 @@
-export class Vehicle {
+import {VehicleInterface} from './vehicle-interface';
+
+export class Vehicle implements VehicleInterface{
   id: number;
   plate: string;
   name: string;
@@ -15,6 +17,18 @@ export class Vehicle {
     this.brand = "";
     this.model = "";
     this.image = "";
+  }
+
+  copy(v: Vehicle) {
+    if (v != null){
+      this.id = v.id;
+      this.plate = v.plate;
+      this.name = v.name;
+      this.type = v.type;
+      this.brand = v.brand;
+      this.model = v.model;
+      this.image = v.image;
+    }
   }
 
   /*function assign(v: Vehicle){

@@ -1,72 +1,44 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { NavController, NavParams } from 'ionic-angular';
 
 import { Vehicle } from '../../model/vehicle';
+import { VehicleAPI } from '../../API/vehicleAPI';
 
 @Component({
   selector: 'page-vehicle-details',
   templateUrl: 'vehicle-details.html'
 })
 export class VehicleDetailsPage {
-  vehicleList: Array<Vehicle>;
   v: Vehicle;
-  selectedVehicle: Vehicle;
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  };
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage){
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedVehicle = navParams.get('v');
-    this.vehicleList = navParams.get('vList');
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+        public api: VehicleAPI, private camera: Camera){
 
     this.v = new Vehicle();
-    if (this.selectedVehicle != null){
-      this.loadVehicle();
-    }
-  }
-
-  loadVehicle(){
-    //this.selectedVehicle.assign(this.v);
-    this.v.id = this.selectedVehicle.id;
-    this.v.plate = this.selectedVehicle.plate;
-    this.v.image = this.selectedVehicle.image;
-    this.v.brand = this.selectedVehicle.brand;
-    this.v.model = this.selectedVehicle.model;
-    this.v.name = this.selectedVehicle.name;
-    this.v.type = this.selectedVehicle.type;
-  }
-
-
-  getNextVehiclesId(vehicles: Array<Vehicle>){
-    let max = 0;
-
-    for(let v of vehicles){
-      if (v.id > max){
-        max = v.id;
-      }
-    }
-
-    return max + 1;
+    this.v.copy(navParams.get('v'));
   }
 
   save(event){
-
-    if (this.selectedVehicle == null){
-      this.selectedVehicle = new Vehicle();
-      this.vehicleList.push(this.selectedVehicle);
-      this.selectedVehicle.id = this.getNextVehiclesId(this.vehicleList);
-    }else{
-      this.selectedVehicle.id = this.v.id;
-    }
-
-    this.selectedVehicle.plate = this.v.plate;
-    this.selectedVehicle.image = this.v.image;
-    this.selectedVehicle.brand = this.v.brand;
-    this.selectedVehicle.model = this.v.model;
-    this.selectedVehicle.name = this.v.name;
-    this.selectedVehicle.type = this.v.type;
-
-    this.storage.set('list', this.vehicleList);
+    this.api.editVehicle(this.v);
   }
+
+  openCamera (event){
+    this.camera.getPicture(this.options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64:
+     this.v.image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+     console.log(err);// Handle error
+    });
+
+  }
+
 }

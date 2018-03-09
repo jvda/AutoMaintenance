@@ -17,6 +17,11 @@
 
   <ion-item>
       <img src={{v.image}}>
+      <ion-fab bottom right edge>
+        <button ion-fab color="dark" (click)="openCamera($event)" >
+          <ion-icon name="camera"></ion-icon>
+        </button>
+      </ion-fab>
   </ion-item>
 
 
