@@ -11,4 +11,12 @@
 
     <button ion-button color="dark" (click)="addSamples($event)" round>Cargar Ejemplos</button>
 
+    <ion-item>
+      <pre>{{api.printVehicleList()}}</pre>
+    </ion-item>
+
+
+    <ion-item>
+      <textarea rows='300' cols='100'>{{api.printVehicleList()}}</textarea>
+    </ion-item>
 </ion-content>

@@ -72,4 +72,24 @@ export class VehicleAPI {
     return max + 1;
   }
 
+  exportVehicleList(){
+    var jsonText = JSON.stringify(this.vehicleList, null, " ");
+
+    return jsonText;
+  }
+
+  printVehicleList(){
+
+    var memberfilter = new Array();
+    memberfilter[0] = "id";
+    memberfilter[1] = "plate";
+    memberfilter[2] = "name";
+    memberfilter[3] = "type";
+    memberfilter[4] = "brand";
+    memberfilter[5] = "model";
+    var jsonText = JSON.stringify(this.vehicleList, memberfilter, " ");
+
+    return jsonText;
+  }
+
 }
