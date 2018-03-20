@@ -32,6 +32,6 @@ Vehicle Maintenance History
 
 TODO:
 
-*Header Manintenances.html with vehicle datas
-*Open Camera/Gallery to set a vehicle photo
-*All event/maintenance
+-Header Manintenances.html with vehicle datas
+-Open Camera/Gallery to set a vehicle photo
+-All event/maintenance

@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import {BehaviorSubject} from "rxjs/Rx";
 
 import { Storage } from '@ionic/storage';
 
@@ -8,7 +9,10 @@ import { VehiclesMockData } from './mockData';
 
 @Injectable()
 export class VehicleAPI {
-  vehicleList: Array<Vehicle>;
+  //vehicleList: Array<Vehicle>;
+  private vehicleListSource = new BehaviorSubject<Array<Vehicle>>(
+    new Array<Vehicle>());
+  public vehicleList = this.countdownSource.asObservable();
 
   constructor(public storage: Storage){
     this.load();
@@ -23,7 +27,7 @@ export class VehicleAPI {
       let vehicle = new Vehicle();
       vehicle.copy(v);
 
-      this.vehicleList.push(vehicle);
+      this.vehicleListSource.next(this.vehicleListSource.getValue().push(vehicle));
     }
 
     this.save();
@@ -31,16 +35,17 @@ export class VehicleAPI {
 
   load(){
     this.storage.get('list').then((value)=>
-      value != null ? this.vehicleList = value : this.vehicleList = new Array<Vehicle>()
+      this.vehicleListSource.next(value != null ? value : new Array<Vehicle>());
     );
   }
 
   save(){
-    this.storage.set('list', this.vehicleList);
+    this.storage.set('list', this.vehicleListSource.getValue());
   }
 
   deleteVehicle(v: Vehicle){
-    this.vehicleList.splice(this.vehicleList.indexOf(v),1);
+    this.vehicleListSource.getValue().
+            splice(this.vehicleListSource.getValue().indexOf(v),1);
 
     this.save();
 
@@ -52,10 +57,12 @@ export class VehicleAPI {
       v.id = this.getNextVehiclesId();
     }
 
-    this.vehicleList.splice(
-      this.vehicleList.indexOf(
-        this.vehicleList.filter( vehicle => vehicle.id === v.id).pop()
-      ),1,v);
+    this.vehicleListSource.getValue().next(
+      this.vehicleListSource.getValue().splice(
+        this.vehicleListSource.getValue().indexOf(
+          this.vehicleListSource.getValue().filter( vehicle => vehicle.id === v.id).pop()
+        ),1,v)
+    );
 
     this.save();
   }
@@ -63,7 +70,7 @@ export class VehicleAPI {
   private getNextVehiclesId(){
     let max = 0;
 
-    for(let v of this.vehicleList){
+    for(let v of this.vehicleListSource.getValue()){
       if (v.id > max){
         max = v.id;
       }
@@ -73,7 +80,7 @@ export class VehicleAPI {
   }
 
   exportVehicleList(){
-    var jsonText = JSON.stringify(this.vehicleList, null, " ");
+    var jsonText = JSON.stringify(this.vehicleListSource.getValue(), null, " ");
 
     return jsonText;
   }
@@ -87,7 +94,7 @@ export class VehicleAPI {
     memberfilter[3] = "type";
     memberfilter[4] = "brand";
     memberfilter[5] = "model";
-    var jsonText = JSON.stringify(this.vehicleList, memberfilter, " ");
+    var jsonText = JSON.stringify(this.vehicleListSource.getValue(), memberfilter, " ");
 
     return jsonText;
   }

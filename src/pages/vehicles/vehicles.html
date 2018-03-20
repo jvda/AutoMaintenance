@@ -16,7 +16,7 @@
       </button>
     </ion-fab>
 
-    <ion-card *ngFor="let v of api.vehicleList">
+    <ion-card *ngFor="let v of api.vehicleList | async">
 
       <ion-item>
         <ion-avatar item-start>
@@ -25,7 +25,6 @@
         <h2>{{v.name}}</h2>
         <p>{{v.type}}</p>
       </ion-item>
-
 
       <img src={{v.image}}/>
       <ion-card-content>
