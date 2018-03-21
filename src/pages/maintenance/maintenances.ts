@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'maintenances.html'
 })
 export class MaintenancesPage {
+  /*
   selectedVehicle: Vehicle;
   selectedEvent: Event;
   e: Event;
@@ -106,5 +107,9 @@ export class MaintenancesPage {
     this.copyEvent(this.selectedEvent, this.e);
 
     this.storage.set('events', this.events);
+  }
+  */
+  constructor(public navCtrl: NavController, public navParams: NavParams){
+    
   }
 }

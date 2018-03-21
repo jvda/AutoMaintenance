@@ -57,7 +57,7 @@ export class VehicleAPI {
   }
 
   editVehicle(v: Vehicle){
-    if (v.id == null){
+    if (v.id == null || v.id <= 0){
       v.id = this.getNextVehiclesId();
     }
 

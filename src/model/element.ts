@@ -8,11 +8,13 @@ export class Element {
     this.dateReg = null;
   }
 
-  copy(e: Element) {
-    if (e != null){
-      this.id = ev.id;
-      this.dateReg = e.dateReg;
-    }
+  copy() {
+    let e: any = new Element();
+
+    e.id = this.id;
+    e.dateReg = this.dateReg;
+
+    return e;
   }
 
 }

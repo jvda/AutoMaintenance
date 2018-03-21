@@ -1,26 +1,24 @@
 
-import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs/Rx";
 
 import { Storage } from '@ionic/storage';
 
 import { Element } from '../model/element';
 
-@Injectable()
 export class ElementAPI {
-  const STORAGEURL: string = '';
-  private elementListSource = new BehaviorSubject<Array<Element>>(
+  protected STORAGEURL: string = '';
+  protected elementListSource = new BehaviorSubject<Array<any>>(
     new Array<Element>());
   //public eventList = this.elementListSource.asObservable();
 
   constructor(public storage: Storage){
-    this.load();
+    //this.load();
   }
 
-  loadAllAsync(ElementMockData: <Array<Element>>){
+  loadAllAsync(elementMockData: Array<any>){
 
-    for(let e of ElementMockData){
-      e.id = this.getNextEventId();
+    for(let e of elementMockData){
+      e.id = this.getNextId();
 
       this.elementListSource.getValue().push(e.copy());
     }
@@ -31,29 +29,29 @@ export class ElementAPI {
   };
 
   load(){
-    this.storage.get(STORAGEURL).then((value)=>
+    this.storage.get(this.STORAGEURL).then((value)=>
       value != null ? this.elementListSource.next(value) :
-                      this.elementListSource.next(new Array<Element>())
+                      this.elementListSource.next(new Array<any>())
     );
   }
 
   save(){
-    this.storage.set(STORAGEURL, this.elementListSource.getValue());
+    this.storage.set(this.STORAGEURL, this.elementListSource.getValue());
   }
 
-  delete(e: Element){
+  delete(e: any){
     this.elementListSource.getValue().
             splice(this.elementListSource.getValue().indexOf(e),1);
 
     this.save();
   }
 
-  edit(e: Element){
+  edit(e: any){
     if (e.id == null){
       e.id = this.getNextId();
     }
 
-    let list = <Array<Element>> this.elementListSource.getValue();
+    let list = <Array<any>> this.elementListSource.getValue();
 
     list.splice(
       list.indexOf(

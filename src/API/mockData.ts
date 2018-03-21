@@ -19,5 +19,5 @@ const TypesVehicles: Array<{type:string, icon:string}> = [
 */
 
 export {
-  VehiclesMockData
+  VehiclesMockData, EventsMockData
 }
