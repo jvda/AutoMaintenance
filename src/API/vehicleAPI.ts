@@ -61,12 +61,21 @@ export class VehicleAPI {
       v.id = this.getNextVehiclesId();
     }
 
-    this.vehicleListSource.next(
-      this.vehicleListSource.getValue().splice(
-        this.vehicleListSource.getValue().indexOf(
-          this.vehicleListSource.getValue().filter( vehicle => vehicle.id === v.id).pop()
-        ),1,v)
-    );
+    /*
+    this.vehicleList.splice(
+      this.vehicleList.indexOf(
+        this.vehicleList.filter( vehicle => vehicle.id === v.id).pop()
+      ),1,v);
+    */
+
+    let vList = <Array<Vehicle>> this.vehicleListSource.getValue();
+
+    vList.splice(
+      vList.indexOf(
+        vList.filter( vehicle => vehicle.id === v.id).pop()
+      ),1,v);
+
+    this.vehicleListSource.next(vList);
 
     this.save();
   }
