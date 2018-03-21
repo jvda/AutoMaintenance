@@ -20,7 +20,7 @@ export class EventAPI extends ElementAPI {
     super(<Array<Event>> JSON.parse(EventsMockData));
   };
 
-  deleteEvent(e: Event){
+  delete(e: Event){
     //TODO: delete all items Actions
 
     super(e);

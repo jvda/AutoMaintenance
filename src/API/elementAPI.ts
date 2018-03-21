@@ -41,14 +41,14 @@ export class ElementAPI {
     this.storage.set(STORAGEURL, this.elementListSource.getValue());
   }
 
-  deleteElement(e: Element){
+  delete(e: Element){
     this.elementListSource.getValue().
             splice(this.elementListSource.getValue().indexOf(e),1);
 
     this.save();
   }
 
-  editElement(e: Element){
+  edit(e: Element){
     if (e.id == null){
       e.id = this.getNextId();
     }
@@ -77,12 +77,12 @@ export class ElementAPI {
     return max + 1;
   }
 
-  exportElementList(){
+  exportList(){
     var jsonText = JSON.stringify(this.elementListSource.getValue(), null, " ");
 
     return jsonText;
   }
 
-  printElementList(){ }
+  printList(){ }
 
 }

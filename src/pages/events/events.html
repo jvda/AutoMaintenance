@@ -18,8 +18,8 @@
       <button ion-fab color="dark" (click)="eventNew($event)"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
-    <ion-card *ngFor="let e of eventsFitered">
-
+    <ion-card *ngFor="let e of eventApi.eventList | async">
+      <!--
       <ion-item *ngIf="!selectedVehicle">
         <ion-avatar item-start>
           <img src={{getImageVehicle(e.vehicleid)}} />
@@ -29,14 +29,14 @@
           {{getNameVehicle(e.vehicleid)}}
         </ion-card-title>
 
-      </ion-item>
+      </ion-item> -->
 
       <ion-grid>
         <ion-row align-items-center>
           <ion-col col-4 *ngIf="selectedVehicle">
             <ion-item>
             <ion-avatar item-start >
-              <img src={{getImageVehicle(e.vehicleid)}} />
+              <!--<img src={{getImageVehicle(e.vehicleid)}} />-->
             </ion-avatar>
             </ion-item>
           </ion-col>
@@ -55,8 +55,9 @@
         <p>
           {{e.price}} {{e.unidprice}}
         </p>
-      </ion-card-content>
+      </ion-card-content> 
 
+      <!--
       <ion-item *ngFor="let m of e.maintenances">
         <p *ngIf="m.type">
           {{m.type}}
@@ -68,7 +69,7 @@
           {{m.describe}}
         </p>
       </ion-item>
-
+    -->
 
       <ion-row no-padding *ngIf="selectedVehicle">
         <ion-col text-right>
