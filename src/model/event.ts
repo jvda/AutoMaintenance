@@ -1,25 +1,26 @@
 
-import { Maintenance } from '../model/maintenance';
+import { Element } from '../model/element';
 
-export class Event {
-  id: number;
+export class Event extends Element {
   date: Date;
   vehicleid: number;
   measurement: number;
   unid: string;
   price: number;
   unidprice: string;
-  maintenances: Array<Maintenance>;
 
   constructor() {
-    this.id = null;
+    super();
     this.vehicleid = null;
     this.date = new Date();
     this.measurement = null;
     this.unid = null;
     this.price = null;
     this.unidprice = null;
-    this.maintenances = new Array<Maintenance>();
+  }
+
+  copy(e: Event){
+    super(e);
   }
 
 }
