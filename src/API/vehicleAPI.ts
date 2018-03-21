@@ -12,7 +12,7 @@ export class VehicleAPI {
   //vehicleList: Array<Vehicle>;
   private vehicleListSource = new BehaviorSubject<Array<Vehicle>>(
     new Array<Vehicle>());
-  public vehicleList = this.countdownSource.asObservable();
+  public vehicleList = this.vehicleListSource.asObservable();
 
   constructor(public storage: Storage){
     this.load();
@@ -27,15 +27,19 @@ export class VehicleAPI {
       let vehicle = new Vehicle();
       vehicle.copy(v);
 
-      this.vehicleListSource.next(this.vehicleListSource.getValue().push(vehicle));
+      this.vehicleListSource.getValue().push(vehicle);
+      //this.vehicleListSource.next(this.vehicleListSource.getValue().push(vehicle));
     }
+
+    this.vehicleListSource.next(this.vehicleListSource.getValue());
 
     this.save();
   };
 
   load(){
     this.storage.get('list').then((value)=>
-      this.vehicleListSource.next(value != null ? value : new Array<Vehicle>());
+      //this.vehicleListSource.next(value != null ? value : new Array<Vehicle>());
+      value != null ? this.vehicleListSource.next(value) : this.vehicleListSource.next(new Array<Vehicle>())
     );
   }
 
@@ -57,7 +61,7 @@ export class VehicleAPI {
       v.id = this.getNextVehiclesId();
     }
 
-    this.vehicleListSource.getValue().next(
+    this.vehicleListSource.next(
       this.vehicleListSource.getValue().splice(
         this.vehicleListSource.getValue().indexOf(
           this.vehicleListSource.getValue().filter( vehicle => vehicle.id === v.id).pop()
