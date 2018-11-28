@@ -8,6 +8,8 @@ import { VehicleAPI } from '../../API/vehicleAPI';
 import { VehicleDetailsPage } from '../vehicle-details/vehicle-details';
 import { EventsPage } from '../events/events';
 
+import { VehicleCard } from '../vehicle-card/vehicle-card';
+
 @Component({
   selector: 'page-vehicles',
   templateUrl: 'vehicles.html'
@@ -19,11 +21,12 @@ export class VehiclesPage {
 
   }
 
-  vehicleEdit(event, v) {
+
+  vehicleEdit(v: Vehicle) {
     this.navCtrl.push(VehicleDetailsPage, { v: v });
   }
 
-  vehicleDel(event, v) {
+  vehicleDel(v: Vehicle) {
     this.api.deleteVehicle(v);
   }
 
@@ -31,7 +34,9 @@ export class VehiclesPage {
     this.navCtrl.push(VehicleDetailsPage);
   }
 
-  maintenanceList(event,v){
+  maintenanceList(v: Vehicle){
     this.navCtrl.push(EventsPage, { v: v });
   }
+
+
 }
