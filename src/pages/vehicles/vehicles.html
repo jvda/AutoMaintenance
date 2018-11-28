@@ -16,43 +16,7 @@
       </button>
     </ion-fab>
 
-    <ion-card *ngFor="let v of api.vehicleList | async">
+    <vehicle-card *ngFor="let v of api.vehicleList | async" [v]="v">
 
-      <ion-item>
-        <ion-avatar item-start>
-          <ion-icon name='car'></ion-icon>
-        </ion-avatar>
-        <h2>{{v.name}}</h2>
-        <p>{{v.type}}</p>
-      </ion-item>
-
-      <img src={{v.image}}/>
-      <ion-card-content>
-        <ion-card-title>
-          {{v.plate}}
-        </ion-card-title>
-        <p>
-          {{v.brand}}
-        </p>
-        <p>
-          {{v.model}}
-        </p>
-      </ion-card-content>
-
-      <ion-row no-padding>
-        <ion-col>
-          <button ion-button color="dark" (click)="maintenanceList($event, v)" icon-only>
-            <ion-icon name='build'></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col text-right>
-          <button ion-button color="dark"  (click)="vehicleDel($event, v)" icon-only>
-            <ion-icon name='trash'></ion-icon>
-          </button>
-          <button ion-button color="dark"  (click)="vehicleEdit($event, v)" icon-only>
-            <ion-icon name='create'></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card>
+    </vehicle-card>
 </ion-content>

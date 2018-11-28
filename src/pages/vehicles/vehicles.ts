@@ -8,6 +8,8 @@ import { VehicleAPI } from '../../API/vehicleAPI';
 import { VehicleDetailsPage } from '../vehicle-details/vehicle-details';
 import { EventsPage } from '../events/events';
 
+import { VehicleCard } from '../vehicle-card/vehicle-card';
+
 @Component({
   selector: 'page-vehicles',
   templateUrl: 'vehicles.html'
@@ -19,6 +21,7 @@ export class VehiclesPage {
 
   }
 
+  /*
   vehicleEdit(event, v) {
     this.navCtrl.push(VehicleDetailsPage, { v: v });
   }
@@ -34,4 +37,6 @@ export class VehiclesPage {
   maintenanceList(event,v){
     this.navCtrl.push(EventsPage, { v: v });
   }
+  */
+
 }

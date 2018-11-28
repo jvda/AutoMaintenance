@@ -1,0 +1,40 @@
+
+<ion-card>
+
+  <ion-item>
+    <ion-avatar item-start>
+      <ion-icon name='car'></ion-icon>
+    </ion-avatar>
+    <h2>{{_v.name}}</h2>
+    <p>{{_v.type}}</p>
+  </ion-item>
+
+  <img src={{v.image}}/>
+  <ion-card-content>
+    <ion-card-title>
+      {{_v.plate}}
+    </ion-card-title>
+    <p>
+      {{_v.brand}}
+    </p>
+    <p>
+      {{_v.model}}
+    </p>
+  </ion-card-content>
+
+  <ion-row no-padding>
+    <ion-col>
+      <button ion-button color="dark" (click)="maintenanceList($event, v)" icon-only>
+        <ion-icon name='build'></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col text-right>
+      <button ion-button color="dark"  (click)="vehicleDel($event, v)" icon-only>
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      <button ion-button color="dark"  (click)="vehicleEdit($event, v)" icon-only>
+        <ion-icon name='create'></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
