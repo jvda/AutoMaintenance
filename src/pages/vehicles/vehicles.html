@@ -16,7 +16,11 @@
       </button>
     </ion-fab>
 
-    <vehicle-card *ngFor="let v of api.vehicleList | async" [v]="v">
+    <vehicle-card *ngFor="let v of api.vehicleList | async"
+      [v]="v"
+      (onEdit)  = vehicleEdit($event)
+      (onDel)   = vehicleDel($event)
+      (onMList) = maintenanceList($event)>
 
     </vehicle-card>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Vehicle } from '../../model/vehicle';
 
@@ -16,16 +16,19 @@ export class VehicleCard {
   }
   get v(): Vehicle {return this._v }
 
-  vehicleEdit(event) {
+  @Output() onEdit = new EventEmitter<Vehicle>();
+  @Output() onDel = new EventEmitter<Vehicle>();
+  @Output() onMList = new EventEmitter<Vehicle>();
 
+  vehicleEdit(event) {
+        this.onEdit.emit(this._v);
   }
 
   vehicleDel(event) {
-  }
-
-  vehicleNew(event){
+        this.onDel.emit(this._v);
   }
 
   maintenanceList(event){
+        this.onMList.emit(this._v);
   }
 }

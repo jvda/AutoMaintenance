@@ -21,12 +21,12 @@ export class VehiclesPage {
 
   }
 
-  /*
-  vehicleEdit(event, v) {
+
+  vehicleEdit(v: Vehicle) {
     this.navCtrl.push(VehicleDetailsPage, { v: v });
   }
 
-  vehicleDel(event, v) {
+  vehicleDel(v: Vehicle) {
     this.api.deleteVehicle(v);
   }
 
@@ -34,9 +34,9 @@ export class VehiclesPage {
     this.navCtrl.push(VehicleDetailsPage);
   }
 
-  maintenanceList(event,v){
+  maintenanceList(v: Vehicle){
     this.navCtrl.push(EventsPage, { v: v });
   }
-  */
+
 
 }
